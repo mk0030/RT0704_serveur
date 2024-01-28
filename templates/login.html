@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!-- Coding by CodingNepal | www.codingnepalweb.com-->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title> Login and Registration Form in HTML & CSS | CodingLab </title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <!-- Fontawesome CDN Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+  <div class="container">
+    <input type="checkbox" id="flip">
+    <div class="cover">
+      <div class="front">
+        <img src="../static/images/19197185.jpg" alt="">
+        <div class="text">
+          <span class="text-1">Bienvenue sur cette application <br>de gestion de vidéothèque </span>
+          <span class="text-2">Veuillez vous connectez </span>
+        </div>
+      </div>
+      <div class="back">
+        <!--<img class="backImg" src="images/backImg.jpg" alt="">-->
+        <div class="text">
+          <span class="text-1">Complete miles of journey <br> with one step</span>
+          <span class="text-2">Let's get started</span>
+        </div>
+      </div>
+    </div>
+    <div class="forms">
+        <div class="form-content">
+          <div class="login-form">
+            <div class="title">Connexion</div>
+          <form action="#">
+            <div class="input-boxes">
+              <div class="input-box">
+                <i class="fas fa-envelope"></i>
+                <input type="text" placeholder="Entrez votre e-mail" required>
+              </div>
+              <div class="input-box">
+                <i class="fas fa-lock"></i>
+                <input type="password" placeholder="Entrez votre mot de passe" required>
+              </div>
+              <div class="text"><a href="#">Mot de passe oublié?</a></div>
+              <div class="button input-box">
+                <input type="submit" value="Valider">
+              </div>
+              <div class="text sign-up-text">Vous n'avez pas de compte? <label for="flip">Inscrivez-vous</label></div>
+            </div>
+        </form>
+      </div>
+        <div class="signup-form">
+          <div class="title">Inscription</div>
+        <form id="registrationForm" action="#" onsubmit="submitRegistration(); return false;">
+            <div class="input-boxes">
+              <div class="input-box">
+                <i class="fas fa-user"></i>
+                <input type="text" id= "name" placeholder="Entrez votre nom" required>
+              </div>
+              <div class="input-box">
+                <i class="fas fa-envelope"></i>
+                <input type="text" id= "email" placeholder="Entrez votre e-mail" required>
+              </div>
+              <div class="input-box">
+                <i class="fas fa-lock"></i>
+                <input type="password" id= "password" placeholder="Entrez votre mot de passe" required>
+              </div>
+              <div class="button input-box">
+                <input type="submit" value="Valider">
+              </div>
+              <div class="text sign-up-text">Vous avez déja un compte? <label for="flip">Connectez-vous</label></div>
+            </div>
+      </form>
+    </div>
+    </div>
+    </div>
+  </div>
+<script>
+    function submitRegistration() {
+        // Récupérer les données du formulaire
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        // Créer un objet JSON avec les données
+        const userData = {
+            "name": name,
+            "email": email,
+            "password": password
+        };
+
+        // Effectuer une requête POST à l'API Flask
+        fetch('http://127.0.0.1:5000/users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(userData),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            // Traiter la réponse si nécessaire (par exemple, rediriger vers une nouvelle page)
+            
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            // Gérer les erreurs si nécessaire
+        });
+    }
+</script>
+</body>
+</html>
